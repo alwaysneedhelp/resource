@@ -1,0 +1,60 @@
+/* about.css */
+
+/* Container for the About section */
+.about-container {
+  display: flex; /* Use flexbox for layout */
+  max-width: 1200px; /* Max width for the container */
+  margin: 40px auto; /* Center the container */
+  padding: 20px; /* Padding around the container */
+}
+
+/* Image section */
+.about-image {
+  flex: 1; /* Take up one part of the flex container */
+  display: flex; /* Center the image */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+/* Image styling */
+.about-image img {
+  max-width: 100%; /* Ensure image is responsive */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Content section */
+.about-content {
+  flex: 1; /* Take up one part of the flex container */
+  padding: 20px; /* Padding for the content */
+}
+
+/* Headings */
+.about-content h1 {
+  font-size: 36px; /* Font size for the heading */
+  color: #0c2f75; /* Dark blue color */
+  margin-bottom: 20px; /* Margin below the heading */
+}
+
+/* Paragraphs */
+.about-content p {
+  font-size: 16px; /* Font size for paragraphs */
+  color: #333; /* Dark text color */
+  line-height: 1.5; /* Line height for better readability */
+  margin-bottom: 15px; /* Space between paragraphs */
+}
+
+/* Button Styles */
+.btn {
+  display: inline-block; /* Inline block for button */
+  padding: 10px 20px; /* Padding for the button */
+  background-color: #0c2f75; /* Button background color */
+  color: #ffffff; /* Button text color */
+  border-radius: 5px; /* Rounded corners */
+  text-decoration: none; /* No underline for the link */
+  transition: background-color 0.3s; /* Smooth background transition */
+  margin-top: 15px; /* Space above the button */
+}
+
+.btn:hover {
+  background-color: #0a1e4d; /* Darker shade on hover */
+}

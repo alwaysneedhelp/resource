@@ -1,0 +1,50 @@
+/* cards.css */
+
+/* Card Gallery Styles */
+.card-gallery {
+  max-width: 73%; /* Limit the width of the gallery */
+  margin: 0 auto; /* Center the gallery horizontally */
+  padding: 40px 20px; /* Padding around the gallery */
+  text-align: center; /* Center align text */
+}
+
+.card-gallery h2 {
+  font-size: 28px; /* Size for the gallery title */
+  color: #0c2f75; /* Dark blue color */
+  margin-bottom: 30px; /* Space below the title */
+}
+
+/* Card Container */
+.card-container {
+  display: flex; /* Flexbox for card layout */
+  flex-wrap: wrap; /* Wrap cards */
+  gap: 20px; /* Space between cards */
+  justify-content: center; /* Center cards */
+}
+
+/* Individual Card Styles */
+.card {
+  background-color: #fff; /* Card background */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Inner padding */
+  width: 250px; /* Increased width for larger cards */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  transition: transform 0.3s, box-shadow 0.3s; /* Transition for hover effect */
+  text-align: center; /* Center text */
+  overflow: hidden; /* Prevent overflow of images */
+}
+
+/* Image Styles */
+.member-image {
+  width: 100%; /* Full width for image */
+  height: 150px; /* Fixed height for uniformity */
+  object-fit: cover; /* Maintain aspect ratio and cover the area */
+  border-radius: 10px; /* Rounded corners for image */
+  margin-bottom: 15px; /* Space below image */
+}
+
+/* Hover Effect */
+.card:hover {
+  transform: translateY(-10px) rotateY(5deg); /* Slight 3D effect */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* Increased shadow */
+}

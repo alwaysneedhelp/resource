@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8" />
+    <title>{{ article.title }} | Resource.uz</title>
+    <link rel="stylesheet" href="{% static 'articles/css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'articles/css/detail.css' %}" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="icon" href="{% static 'articles/images/logo1.svg' %}" />
+</head>
+<body>
+    {% include 'includes/navbar.html' %}
+
+    <div class="content-container">
+        <div class="main-content">
+            <div class="article-details">
+                <div class="category">{{ article.category.name }}</div>
+                <h1>{{ article.title }}</h1>
+
+                <div class="article-meta">
+                    <span class="author"><i class="fas fa-feather-alt"></i> {{ article.author }}</span>
+                    <span class="published-date"><i class="fas fa-clock"></i> {{ article.published_date|date:"d-m-Y" }}</span>
+                    <span class="reading-time"><i class="fas fa-hourglass-half"></i> {{ article.reading_time }} daqiqa</span>
+                </div>
+
+                <div class="article-image">
+                    {% if article.image %}
+                    <img src="{{ article.image.url }}" alt="{{ article.title }}" class="responsive-image" />
+                    {% endif %}
+                </div>
+
+                <div class="article-content">
+                    {{ article.content|safe }}
+                </div>
+
+                <a href="{% url 'articles_list' %}" class="back-button button">Maqolalar ro'yxatiga qaytish</a>
+            </div>
+        </div>
+
+        <div class="related-articles">
+            <h2>Related Articles</h2>
+            <div class="related-articles-list">
+                {% for related_article in related_articles %}
+                <div class="related-article-card">
+                    <a href="{% url 'article_detail' related_article.slug %}">
+                        <h3>{{ related_article.title|truncatechars:75 }}</h3>
+                        <p><strong>Author:</strong> {{ related_article.author }}</p>
+                        <p><strong>Category:</strong> {{ related_article.category.name }}</p>
+                        <p><strong>Views:</strong> {{ related_article.views }}</p>
+                    </a>
+                </div>
+                {% empty %}
+                <p>No related articles found.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {% include 'includes/footer.html' %}
+</body>
+</html>

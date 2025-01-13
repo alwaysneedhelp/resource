@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8" />
+    <title>Biz haqimizda | Resource.uz</title>
+    <link rel="stylesheet" href="{% static 'articles/css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'articles/css/about.css' %}" />
+    <link rel="stylesheet" href="{% static 'articles/css/cards.css' %}" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="{% static 'articles/images/logo1.svg' %}" />
+</head>
+<body>
+    {% include 'includes/navbar.html' %}
+    
+    <div class="about-container">
+        <div class="about-image">
+            <img src="{% static 'articles/images/biz_haqimizda.png' %}" alt="About Illustration" />
+        </div>
+        <div class="about-content">
+            <h1>Biz haqimizda</h1>
+            <p>Resource uz - internetda eng yaxshi kitoblarni taqdim etishni maqsad qilgan platforma.</p>
+            <p>Ushbu sayt orqali kitoblar haqida ma'lumotlarni o'rganishingiz mumkin. Loyihamiz orqali ko'plab kitoblarning muhim jihatlarini hamda boshqa ko'plab foydali resurslarni topishingiz mumkin!</p>
+        </div>
+    </div>
+
+    <!-- Members Card Gallery -->
+    <div class="card-gallery">
+        <h2>Bizning Jamoa</h2>
+        <div class="card-container">
+            {% for member in members %}
+            <div class="card">
+                <img src="{{ member.image.url }}" alt="{{ member.name }}" class="member-image">
+                <h3>{{ member.name }}</h3>
+                <p>Role: {{ member.role }}</p>
+            </div>
+            {% empty %}
+            <p>No team members found.</p>  <!-- This will display if no members are found -->
+            {% endfor %}
+        </div>
+    </div>
+
+    {% include 'includes/footer.html' %}
+</body>
+</html>

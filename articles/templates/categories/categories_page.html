@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8" />
+    <title>Kategoriyalar</title>
+    <link rel="stylesheet" href="{% static 'articles/css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'articles/css/categories.css' %}" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="{% static 'articles/images/logo1.svg' %}" />
+</head>
+<body>
+    {% include 'includes/navbar.html' %} <!-- Include Navbar -->
+
+    <h1 class="page-title">Kategoriyalar</h1>
+    <div class="categories-container">
+        {% for category, items in categories_data.items %}
+        <div class="category-column">
+            <h2 class="category-title">{{ category.name }}</h2>
+            <div class="dynamic-scroller">
+                <div class="cards-container">
+                    {% for item in items %}
+                    <div class="card" data-slug="{{ item.slug }}" data-content="{{ item.content|default:'' }}">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.title }}" class="card-image" />
+                        {% endif %}
+                        <div class="card-content">
+                            <h3 class="card-title">{{ item.title|truncatechars:25 }}</h3>
+                            <div class="card-meta">
+                                <p class="author"><strong>Author:</strong> {{ item.author|truncatechars:25 }}</p>
+                                <p class="date"><strong>Published:</strong> {{ item.published_date|date:"d-m-Y" }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="space"></div>
+    {% include 'includes/footer.html' %} <!-- Include Footer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scroller = document.querySelectorAll('.dynamic-scroller');
+        
+            scroller.forEach(scrollContainer => {
+                const cards = scrollContainer.querySelectorAll('.card');
+        
+                const updateScale = () => {
+                    const centerX = scrollContainer.scrollLeft + scrollContainer.clientWidth / 2;
+                    
+                    cards.forEach(card => {
+                        const cardCenterX = card.offsetLeft + card.clientWidth / 2;
+                        const distance = Math.abs(centerX - cardCenterX);
+                        const maxDistance = scrollContainer.clientWidth / 2;
+                        const scale = Math.max(0.9, 1 - (distance / maxDistance) * 0.25);
+                        card.style.transform = `scale(${scale})`;
+                        card.style.transition = 'transform 0.3s';
+                    });
+                };
+        
+                scrollContainer.addEventListener('scroll', updateScale);
+                window.addEventListener('resize', updateScale);
+        
+                updateScale(); // Initial call to set the scale on load
+        
+                // Set full scale on hover
+                cards.forEach(card => {
+                    card.addEventListener('mouseover', () => {
+                        card.style.transform = 'scale(1)';
+                        card.style.transition = 'transform 0.3s';
+                    });
+        
+                    card.addEventListener('mouseout', () => {
+                        updateScale(); // Reset scale when hover ends
+                    });
+
+                    // Handle click event
+                    card.addEventListener('click', () => {
+                        const slug = card.getAttribute('data-slug');
+                        const content = card.getAttribute('data-content');
+                        const url = content ? `/article/${slug}` : `/research/${slug}`;
+                        window.location.href = url; // Navigate to the appropriate URL
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

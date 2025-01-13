@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8" />
+    <title>{{ research.title }} | Resource.uz</title>
+    <link rel="stylesheet" href="{% static 'articles/css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'articles/css/detail.css' %}" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="icon" href="{% static 'articles/images/logo1.svg' %}" />
+    <style>
+        .pdf-viewer {
+            width: 100%;
+            max-width: 700px; /* Set a maximum width */
+            height: 800px; /* Set a fixed height */
+            border: 1px solid #ccc;
+            overflow-y: scroll; /* Enable vertical scrolling */
+            margin: 0 auto; /* Center the container */
+            padding: 10px;
+        }
+        canvas {
+            display: block;
+            margin: 20px auto; /* Add some spacing between pages */
+        }
+    </style>
+</head>
+<body>
+    {% include 'includes/navbar.html' %}
+
+    <div class="content-container">
+        <div class="main-content">
+            <div class="article-details">
+                <div class="category">{{ research.category.name }}</div>
+                <h1>{{ research.title }}</h1>
+
+                <div class="article-meta">
+                    <span class="author"><i class="fas fa-feather-alt"></i> {{ research.author }}</span>
+                    <span class="published-date"><i class="fas fa-clock"></i> {{ research.published_date|date:"d-m-Y" }}</span>
+                </div>
+
+                <div class="abstract-file-container">
+                    <div class="abstract">
+                        <h2>Abstract</h2>
+                        <p class="research-abstract">{{ research.abstract|safe }}</p>
+                    </div>
+                    <div class="file-download">
+                        <h2>Ilmiy ish:</h2>
+                        {% if research.content_file %}
+                            <div class="pdf-viewer" id="pdf-viewer"></div>
+                            <div class="button-container">
+                                <a href="{{ research.content_file.url }}" download class="button download-button">
+                                    <i class="fas fa-download"></i> Download
+                                </a>
+                                <a href="{% url 'researches_list' %}" class="back-button button">Ilmiy ishlar ro'yxatiga qaytish</a>
+                            </div>
+                        {% else %}
+                            <p>No content file available.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="related-articles">
+            <h2>Related Research</h2>
+            <div class="related-articles-list">
+                {% for related in related_research %}
+                <div class="related-article-card">
+                    <a href="{% url 'research_detail' related.slug %}">
+                        <h3>{{ related.title }}</h3>
+                        <p><strong>Author:</strong> {{ related.author }}</p>
+                        <p><strong>Category:</strong> {{ related.category.name }}</p>
+                        <p><strong>Views:</strong> {{ related.views }}</p>
+                    </a>
+                </div>
+                {% empty %}
+                <p>No related research found.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {% include 'includes/footer.html' %}
+
+    <!-- PDF.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var url = "{{ research.content_file.url }}";
+            var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+            // Setting worker path to pdf.js
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js';
+
+            var pdfDoc = null,
+                scale = 1.0; // Adjust the scale to fit the desired width
+
+            function renderPage(num, pdfDoc) {
+                pdfDoc.getPage(num).then(function (page) {
+                    var viewport = page.getViewport({ scale: scale });
+                    var canvas = document.createElement('canvas');
+                    var ctx = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+                    var renderContext = {
+                        canvasContext: ctx,
+                        viewport: viewport
+                    };
+                    page.render(renderContext);
+                    document.getElementById('pdf-viewer').appendChild(canvas);
+                });
+            }
+
+            pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
+                pdfDoc = pdfDoc_;
+                for (var i = 1; i <= pdfDoc.numPages; i++) {
+                    renderPage(i, pdfDoc);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

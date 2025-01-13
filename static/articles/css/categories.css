@@ -1,0 +1,124 @@
+/* Basic styling for the content area */
+.content {
+  max-width: 63%;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h1 {
+  margin-top: 40px;
+  font-size: 36px;
+  color: #0c2f75;
+  text-align: center;
+}
+
+/* Categories Container */
+.categories-container {
+  display: flex;
+  flex-direction: column; /* Stack categories vertically */
+  margin: 0 auto; /* Center the container */
+  width: 63%; /* Set a max width for the container */
+}
+
+/* Category Column */
+.category-column {
+  width: 100%; /* Full width for each category */
+}
+
+/* Category Title */
+.category-title {
+  font-size: 1.8rem; /* Slightly larger title */
+  color: #0c2f75; /* Dark blue color */
+}
+
+/* Dynamic Scroller */
+.dynamic-scroller {
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevent wrapping */
+  padding: 10px 0; /* Padding for the scroller */
+  height: max-content; 
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  cursor: pointer; /* Pointer cursor for interactivity */
+  -ms-overflow-style: none; /* Hide scrollbar for Internet Explorer and Edge */
+}
+
+.dynamic-scroller::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+
+/* Cards Container */
+.cards-container {
+  display: flex; /* Use flex for horizontal layout */
+  transition: transform 0.3s; /* Smooth scrolling */
+}
+
+/* Card Styles */
+.card {
+  background-color: #ffffff; /* White background */
+  border-radius: 10px; /* Rounded corners */
+  padding: 15px; /* Inner padding */
+  min-height: max-content; /* Ensure minimum height */
+  width: 250px;
+  transition: box-shadow 0.3s, transform 0.3s; /* Transition for hover effect */
+  border: 1px solid #e0e0e0; /* Light border */
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for default state */
+  transition: opacity 0.3s; /* Smooth opacity transition */
+}
+
+/* Card Image Styles */
+.card-image {
+  width: 100%; /* Full width for image */
+  height: 150px; /* Fixed height for uniformity */
+  object-fit: cover; /* Maintain aspect ratio and cover the area */
+  border-radius: 10px; /* Rounded corners for image */
+  margin-bottom: 10px; /* Space below image */
+}
+
+/* Card Content Styles */
+.card-content {
+  padding: 0 5px; /* Padding for better spacing */
+  flex-grow: 1; /* Allow content to expand */
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  justify-content: space-between; /* Space out content */
+}
+
+/* Card Link Styles */
+.card a {
+  text-decoration: none;
+  color: #333; /* Dark text color */
+}
+
+/* Card Title */
+.card-content h2 {
+  font-size: 1.2rem; /* Title size */
+  margin: 10px 0 5px; /* Margins for spacing */
+  overflow-wrap: break-word; /* Allow long titles to wrap */
+  color: #0c2f75; /* Dark blue for titles */
+}
+
+/* Card Metadata */
+.card-meta {
+  font-size: 14px; /* Smaller font size */
+  color: #666; /* Gray color for text */
+}
+
+/* Adjust opacity based on position in scroller */
+.dynamic-scroller .card {
+  opacity: 0.8; /* Lower opacity for all cards */
+}
+
+/* Smoother scrolling */
+.dynamic-scroller {
+  scroll-behavior: smooth; /* Smooth scrolling effect */
+}
+
+.space{
+  height: 40px;
+}

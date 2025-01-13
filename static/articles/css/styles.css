@@ -1,0 +1,506 @@
+/* General Styles */
+body {
+  margin: 0;
+  background-color: #eff4f6;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 300px;
+  background-color: #fff;
+  border-bottom: 2px solid #6d9886;
+}
+
+.logo {
+  height: 50px;
+}
+
+.logo-text {
+  font-size: 28px;
+  color: #4b8a3c;
+  font-weight: normal;
+  margin-left: 10px;
+}
+
+nav {
+  flex-grow: 1;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+nav ul li {
+  margin-left: 50px;
+  position: relative;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+  padding: 8px 0;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #9333ea;
+}
+
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 2px;
+  width: 100%;
+  background-color: #9333ea;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+nav ul li a:hover::after {
+  transform: scaleX(1);
+}
+
+nav ul li a.active {
+  font-weight: 700;
+  color: #9333ea;
+}
+
+/* Quote Section Styles */
+.quote-section {
+  padding: 80px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quote-container {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quote-text {
+  flex: 1;
+  color: #333;
+  font-size: 56px;
+  font-style: italic;
+  line-height: 1.4;
+  position: relative;
+  margin-right: 60px;
+}
+
+.quote-mark {
+  font-size: 150px;
+  font-style: normal;
+  color: #e3c69a;
+  position: absolute;
+  top: -30px;
+  left: -20px;
+}
+
+.quote-author {
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+  color: #555;
+  font-size: 36px;
+  font-style: normal;
+}
+
+.quote-image {
+  flex-shrink: 0;
+}
+
+.quote-image img {
+  width: 450px;
+  height: auto;
+  border-radius: 8%;
+  object-fit: cover;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  filter: brightness(1.1);
+}
+
+/* Latest Articles Styles */
+.latest-articles {
+  cursor: pointer;
+  margin: 40px auto;
+  max-width: 63%;
+}
+
+.latest-articles h2 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Flex container for articles and categories */
+.articles-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.articles-list {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+  gap: 20px;
+}
+
+.article-card {
+  display: flex;
+  border: 2px solid #5bb69060;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s;
+  max-height: 280px;
+  text-decoration: none;
+}
+
+.article-card:hover {
+  transform: translateY(-4px);
+}
+
+.article-image-container {
+  width: 250px;
+  flex-shrink: 0; /* Ensure the container maintains its size */
+}
+
+.article-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0; /* Ensure the image covers the container */
+}
+
+.article-content {
+  margin-left: 10px;
+  padding: 15px;
+  flex: 1;
+}
+
+.article-title {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.article-meta {
+  font-size: 14px;
+  color: #777;
+  margin: 10px 0;
+}
+
+.article-description {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Categories Styles */
+.categories {
+  flex: 1;
+  margin-left: 80px;
+  align-self: stretch; /* Align categories to the same vertical level as articles */
+}
+
+.categories h2 {
+  font-size: 1.5em;
+  margin-top: 1em;
+}
+
+.categories-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.category-tag {
+  display: inline-block;
+  margin: 0.2em;
+  padding: 0.5em 1em;
+  border: 2px solid #6d9886;
+  border-radius: 10px;
+  color: #6d9886;
+  transition: background-color 0.3s;
+}
+
+.category-tag:hover {
+  background-color: #ffffff;
+}
+
+/* More Button Styles */
+.more-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px; /* Increased padding for a better feel */
+  background-color: #6d9886; /* Main color */
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px; /* Slightly rounded corners */
+  font-weight: bold; /* Bold text for emphasis */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+  font-size: 16px; /* Increased font size */
+}
+
+.more-button:hover {
+  background-color: #5bb690; /* Lighter shade on hover */
+  transform: scale(1.05); /* Slightly enlarge the button */
+}
+
+/* Latest Researches Styles */
+.latest-researches {
+  cursor: pointer;
+  margin: 40px auto; /* Center align with auto left/right margins */
+  max-width: 63%; /* Same max-width as latest articles */
+}
+
+.latest-researches h2 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Flex container for researches */
+.research-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.research-card {
+  display: flex;
+  border: 2px solid #55669e65;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s;
+  min-height: 200px;
+  max-height: 280px;
+  max-width: 63%; /* Full width for research card */
+}
+
+.hide {
+  display: none; /* Hides the element completely */
+}
+
+.research-card:hover {
+  transform: translateY(-4px);
+}
+
+.research-image-container {
+  width: 250px;
+  flex-shrink: 0; /* Ensure the container maintains its size */
+}
+
+.research-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0; /* Ensure the image covers the container */
+}
+
+.research-title {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+  color: #4b8a3c;
+}
+
+.research-meta {
+  font-size: 14px;
+  color: #777;
+  margin: 10px 0;
+}
+
+.research-description {
+  font-size: 16px;
+  color: #555;
+}
+
+.popular-articles-section, .popular-researches-section {
+  margin: 20px 0;
+}
+
+.popular-articles-list, .popular-researches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Space between cards */
+}
+
+.popular-article-card, .popular-research-card {
+  display: flex;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  max-height: 100px; /* Limit vertical space */
+}
+
+.popular-article-card:hover, .popular-research-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.popular-article-image-container, .popular-research-image-container {
+  min-width: 100px; /* Fixed width for the image */
+  max-width: 100px;
+  height: 100px; /* Fixed height for the image */
+  overflow: hidden;
+}
+
+.popular-article-image, .popular-research-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the container */
+}
+
+.popular-article-content, .popular-research-content {
+  padding: 8px; /* Padding around the content */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+}
+
+.popular-article-title, .popular-research-title {
+  font-size: 1em; /* Smaller title size */
+  margin: 0; /* Remove default margin */
+  color: #333;
+}
+
+.popular-article-meta, .popular-research-meta {
+  font-size: 0.85em; /* Slightly smaller font size for meta */
+  color: #777;
+  margin-top: 4px; /* Space between title and views */
+}
+
+.email {
+  text-align: center; /* Center text alignment */
+  margin: 40px auto; /* Center the section and add top/bottom margin */
+  max-width: 1000px; /* Max width for larger screens */
+}
+
+.email h1 {
+  font-size: 50px; /* Font size for the heading */
+  margin-bottom: 24px; /* Space below the heading */
+}
+
+.email p {
+  font-size: 20px;
+  color: #555; /* Text color */
+}
+
+.email a {
+  color: #27c0ac; /* Link color */
+  text-decoration: none; /* Remove underline from link */
+  transition: color 0.3s; /* Smooth transition for hover effect */
+}
+
+.email a:hover {
+  color: #9333ea; /* Change color on hover */
+  font-weight: 500;
+}
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e0e0e0;
+}
+
+.footer-col {
+  text-align: center;
+}
+
+.footer-col h4 {
+  font-size: 22px;
+  color: #27c0ac; /* Light teal color for headings */
+  text-transform: capitalize;
+  font-weight: 100;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.footer-col h4::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  background-color: #9333ea;
+  height: 2px;
+  width: 40px;
+}
+
+.footer-col ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+}
+
+.footer-col ul li {
+  margin: 10px 0;
+}
+
+.footer-col ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 19px;
+  transition: all 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+  color: #9333ea; /* Same teal color for hover effect */
+  font-weight: 900;
+  padding-left: 2px;
+}
+
+.links {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: row; /* Ensure items are in a row */
+  align-items: center; /* Center items vertically */
+  gap: 10px; /* Space between icons */
+}
+
+.links a {
+  font-size: 16px; /* Size of the icon */
+  text-decoration: none;
+  background: #9333ea; /* Background color */
+  color: #fff; /* Text color */
+  border-radius: 50%; /* Make it circular */
+  padding: 10px; /* Inner padding */
+  width: 20px; /* Fixed width for the circle */
+  height: 20px; /* Fixed height for the circle */
+  display: flex; /* Use flexbox for centering */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  transition: background 0.3s; /* Smooth transition for background */
+}
+
+.links a:hover {
+  color: #333;
+  background: #fff; /* Teal on hover */
+}
+
+footer {
+  background-color: white;
+  padding: 35px 0;
+  border-top: 2px solid #6d9886;
+}

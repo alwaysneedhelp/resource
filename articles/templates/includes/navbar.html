@@ -1,0 +1,70 @@
+{% load static %}
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    .search-form {
+      position: relative; /* Make the form relative for absolute positioning */
+      margin-left: 100px; /* Move search bar to the right */
+    }
+
+    .search-form input {
+      padding: 10px 40px; /* Add padding for the icon */
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 250px; /* Set a width for the input */
+      transition: border-color 0.3s;
+    }
+
+    .search-form input:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    .search-form .icon {
+      position: absolute;
+      left: 10px; /* Position the icon inside the input */
+      top: 50%; /* Center the icon vertically */
+      transform: translateY(-50%); /* Adjust vertical centering */
+      color: #aaa;
+    }
+
+    .search-form button {
+      display: none; /* Hide button as icon is used */
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="navbar">
+    <a href="/">
+      <img
+        src="{% static 'articles/images/logo.svg' %}"
+        alt="Resource.uz Logo"
+        class="logo"
+      />
+    </a>
+    <form class="search-form" action="/search/" method="get">
+      <i class="fas fa-search icon"></i> <!-- Font Awesome icon -->
+      <input type="text" name="q" placeholder="Search..." aria-label="Search" />
+    </form>
+    <nav>
+      <ul>
+        <li>
+          <a href="/" class="{% if request.path == '/' %}active{% endif %}">Bosh Sahifa</a>
+        </li>
+        <li>
+          <a href="/about/" class="{% if request.path == '/about/' %}active{% endif %}">Biz Haqimizda</a>
+        </li>
+        <li>
+          <a href="/articles/" class="{% if request.path == '/articles/' %}active{% endif %}">Maqolalar</a>
+        </li>
+        <li>
+          <a href="/researches/" class="{% if request.path == '/researches/' %}active{% endif %}">Ilmiy ishlar</a>
+        </li>
+        <li>
+          <a href="/categories/" class="{% if request.path == '/categories/' %}active{% endif %}">Turkumlar</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

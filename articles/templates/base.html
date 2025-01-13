@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Resource.uz{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'articles/css/styles.css' %}" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="{% static 'articles/images/logo1.svg' %}" />
+    <script>
+        function redirectTo(url) {
+            window.location.href = url; // Redirect to the provided URL
+        }
+    </script>
+</head>
+<body>
+    {% include 'includes/navbar.html' %}
+
+    <div class="content">
+        <section class="quote-section">
+            <div class="quote-container">
+                <div class="quote-text">
+                    <span class="quote-mark">“</span>
+                    <p>Ilm narsalarni inson aqli yordamida o'rganishdir.</p>
+                    <span class="quote-author">— Ibn Sino</span>
+                </div>
+                <div class="quote-image">
+                    <img src="{% static 'articles/images/ibn_sino.jpg' %}" alt="Ibn Sino" />
+                </div>
+            </div>
+        </section>
+
+        <section class="latest-articles">
+            <h2>So'nggi maqolalar</h2>
+            <div class="articles-container">
+                <div class="articles-list">
+                    {% for article in latest_articles %}
+                    <div class="article-card" onclick="redirectTo('{% url 'article_detail' article.slug %}')">
+                        <div class="article-image-container {% if not article.image %}hide{% endif %}">
+                            {% if article.image %}
+                            <img src="{{ article.image.url }}" alt="{{ article.title }}" class="article-image" />
+                            {% endif %}
+                        </div>
+                        <div class="article-content">
+                            <h3 class="article-title">{{ article.title|truncatechars:100 }}</h3>
+                            <p class="article-meta">
+                                <strong>{{ article.category.name }}</strong> | {{ article.author }} | 
+                                {{ article.published_date.day }}-{% if article.published_date.month == 1 %}Yanvar{% elif article.published_date.month == 2 %}Fevral{% elif article.published_date.month == 3 %}Mart{% elif article.published_date.month == 4 %}Aprel{% elif article.published_date.month == 5 %}May{% elif article.published_date.month == 6 %}Iyun{% elif article.published_date.month == 7 %}Iyul{% elif article.published_date.month == 8 %}Avgust{% elif article.published_date.month == 9 %}Sentabr{% elif article.published_date.month == 10 %}Oktyabr{% elif article.published_date.month == 11 %}Noyabr{% elif article.published_date.month == 12 %}Dekabr{% endif %},  {{ article.published_date.year }} | {{ article.reading_time }} minut
+                            </p>
+                            <p class="article-description">{{ article.plain_text|truncatewords:30 }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="categories">
+                    <h2>Turkumlar</h2>
+                    <div class="categories-list">
+                        {% for category in categories %}
+                        <span class="category-tag" onclick="redirectTo('{% url 'categories_page' %}')">{{ category.name }}</span>
+                        {% endfor %}
+                    </div>
+                    <section class="popular-articles-section">
+                        <h2>Eng mashhur maqolalar</h2>
+                        <div class="popular-articles-list">
+                            {% for article in popular_articles %}
+                            <div class="popular-article-card" onclick="redirectTo('{% url 'article_detail' article.slug %}')">
+                                <div class="popular-article-image-container">
+                                    <img src="{{ article.image.url }}" alt="{{ article.title }}" class="popular-article-image" />
+                                </div>
+                                <div class="popular-article-content">
+                                    <h3 class="popular-article-title">{{ article.title|truncatechars:40 }}</h3>
+                                    <p class="popular-article-meta">Views: {{ article.views }}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </section>
+                    
+                    <section class="popular-researches-section">
+                        <h2>Eng mashhur ilmiy ishlar</h2>
+                        <div class="popular-researches-list">
+                            {% for research in popular_researches %}
+                            <div class="popular-research-card" onclick="redirectTo('{% url 'research_detail' research.slug %}')">
+                                <div class="popular-research-image-container">
+                                    <img src="{{ research.image.url }}" alt="{{ research.title }}" class="popular-research-image" />
+                                </div>
+                                <div class="popular-research-content">
+                                    <h3 class="popular-research-title">{{ research.title|truncatechars:50 }}</h3>
+                                    <p class="popular-research-meta">Views: {{ research.views }}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <a href="/articles" class="more-button">More</a>
+        </section>
+
+        <section class="latest-researches">
+            <h2>So'nggi ilmiy ishlar</h2>
+            <div class="research-container">
+                <div class="articles-list">
+                    {% for research in latest_researches %}
+                    <div class="research-card" onclick="redirectTo('{% url 'research_detail' research.slug %}')">
+                        <div class="article-image-container {% if not research.image %}hide{% endif %}">
+                            {% if research.image %}
+                            <img src="{{ research.image.url }}" alt="{{ research.title }}" class="article-image" />
+                            {% endif %}
+                        </div>
+                        <div class="article-content">
+                            <h3 class="article-title">{{ research.title|truncatechars:100 }}</h3>
+                            <p class="article-meta">
+                                <strong>{{ research.category.name }}</strong> | {{ research.author }} | 
+                                {{ research.published_date.day }}-{% if research.published_date.month == 1 %}Yanvar{% elif research.published_date.month == 2 %}Fevral{% elif research.published_date.month == 3 %}Mart{% elif research.published_date.month == 4 %}Aprel{% elif research.published_date.month == 5 %}May{% elif research.published_date.month == 6 %}Iyun{% elif research.published_date.month == 7 %}Iyul{% elif research.published_date.month == 8 %}Avgust{% elif research.published_date.month == 9 %}Sentabr{% elif research.published_date.month == 10 %}Oktyabr{% elif research.published_date.month == 11 %}Noyabr{% elif research.published_date.month == 12 %}Dekabr{% endif %},  {{ research.published_date.year }}
+                            </p>
+                            <p class="article-description">{{ research.abstract|truncatewords:50 }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <a href="/researches" class="more-button">More</a>
+        </section>
+
+        <section class="email">
+            <h1>Sizda maqola yoki ilmiy ish bormi?</h1>
+            <p>
+                <span>
+                    <a href="https://t.me/aloqa_resource_uz" target="_blank" rel="noopener noreferrer">Biz</a>
+                </span>ga yuboring va nashr eting, shu orqali o'zbek tili rivojiga hissa qo'shing!!!
+            </p>
+        </section>
+    </div>
+    {% include 'includes/footer.html' %}
+</body>
+</html>
