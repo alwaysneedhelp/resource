@@ -53,16 +53,19 @@
           <a href="/" class="{% if request.path == '/' %}active{% endif %}">Bosh Sahifa</a>
         </li>
         <li>
-          <a href="/about/" class="{% if request.path == '/about/' %}active{% endif %}">Biz Haqimizda</a>
+          <a href="{% url 'about' %}" class="{% if request.path == '/about/' %}active{% endif %}">Biz Haqimizda</a>
         </li>
         <li>
-          <a href="/articles/" class="{% if request.path == '/articles/' %}active{% endif %}">Maqolalar</a>
+          <a href="{% url 'articles_list' %}" class="{% if request.path == '/articles/' %}active{% endif %}">Maqolalar</a>
         </li>
         <li>
-          <a href="/researches/" class="{% if request.path == '/researches/' %}active{% endif %}">Ilmiy ishlar</a>
+          <a href="{% url 'researches_list' %}" class="{% if request.path == '/researches/' %}active{% endif %}">Ilmiy ishlar</a>
         </li>
         <li>
-          <a href="/categories/" class="{% if request.path == '/categories/' %}active{% endif %}">Turkumlar</a>
+          <a href="{% url 'categories_page' %}" class="{% if request.path == '/categories/' %}active{% endif %}">Turkumlar</a>
+        </li>
+        <li>
+          <a href="{% url 'userauths:login' %}" class="{% if request.path == '/login/' %}active{% endif %}" style="scale: 200%;"><i class="fa-solid fa-user"></i></a>
         </li>
       </ul>
     </nav>
