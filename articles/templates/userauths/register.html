@@ -1,0 +1,19 @@
+<!-- <form action="">
+    <input type="email" placeholder="Email">
+    <input type="text" placeholder="Username">
+    <input type="password" placeholder="Password">
+    <input type="password" placeholder="Confirm Password">
+    <button>Register</button>
+</form> -->
+
+{% if form.errors %}
+<div class="alert alert-danger">
+    <strong>{{form.errors}}</strong>
+</div>
+{% endif %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>Register</button>
+</form>
