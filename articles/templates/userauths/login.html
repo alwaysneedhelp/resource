@@ -1,13 +1,28 @@
+{% load static %}
+
 <head>
     <link rel="stylesheet" href="{% static 'userauths/css/login.css' %}">
 </head>
 
-<form method="POST">
+
+<body>
     <div class="wrapper fadeInDown">
         <div id="formContent">
+
+          <!-- Display messages -->
+            {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        <div class="alert {{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
           <!-- Tabs Titles -->
-          <h2 class="active"> Sign In </h2>
-          <h2 class="inactive underlineHover">Sign Up </h2>
+          <a class="active" href="{% url 'userauths:login' %}"> Sign In </a>
+          <a class="inactive underlineHover" href="{% url 'userauths:register' %}">Sign Up</a>
       
           <!-- Icon -->
           <div class="fadeIn first">
@@ -15,9 +30,10 @@
           </div>
       
           <!-- Login Form -->
-          <form>
-            <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-            <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+          <form method="POST">
+            {% csrf_token %}
+            <input type="email" id="email" class="fadeIn second" name="email" placeholder="gmail">
+            <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
             <input type="submit" class="fadeIn fourth" value="Log In">
           </form>
       
@@ -28,8 +44,4 @@
       
         </div>
     </div>
-    {% csrf_token %}
-    <input required type="email" name="email" placeholder='Email'>
-    <input required type="password" name="password" placeholder="Password">
-    <button class='btn btn-heading btn-block hover-up'  type="submit" name="login">Log In</button>
-</form>
+</body>

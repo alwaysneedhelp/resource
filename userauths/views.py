@@ -45,12 +45,10 @@ def login_view(request):
 
         try:
             user = User.objects.get(email=email)
-            username = user.username
         except Exception as e:
             print(e)
             messages.warning(request, f'User with email {email} does not exist')
-
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request=request, email=email, password=password)
         print(user)
 
         if user is not None:

@@ -18,7 +18,7 @@ a {
   font-weight: 400;
 }
 
-h2 {
+a {
   text-align: center;
   font-size: 16px;
   font-weight: 600;
@@ -69,11 +69,11 @@ h2 {
 
 /* TABS */
 
-h2.inactive {
+a.inactive {
   color: #cccccc;
 }
 
-h2.active {
+a.active {
   color: #0d0d0d;
   border-bottom: 2px solid #5fbae9;
 }
@@ -93,7 +93,7 @@ input[type=button], input[type=submit], input[type=reset]  {
   text-transform: uppercase;
   font-size: 13px;
   -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  box-shadow: 0 20px 30px 0 rgba(95,186,233,0.4);
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
   margin: 5px 20px 40px 20px;
@@ -102,10 +102,13 @@ input[type=button], input[type=submit], input[type=reset]  {
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-  background-color: #39ace7;
+  background-color: #0d6794;
+  mix-blend-mode: multiply;
+  transition: all 1s ease-in-out;
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
@@ -116,7 +119,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
   transform: scale(0.95);
 }
 
-input[type=text] {
+input[type=text], [type=password], [type=email] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -137,12 +140,12 @@ input[type=text] {
   border-radius: 5px 5px 5px 5px;
 }
 
-input[type=text]:focus {
+input[type=text], [type=password], [type=email]:focus {
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
 }
 
-input[type=text]:placeholder {
+input[type=text], [type=password], [type=email]:placeholder {
   color: #cccccc;
 }
 
@@ -239,7 +242,7 @@ input[type=text]:placeholder {
   height: 2px;
   background-color: #56baed;
   content: "";
-  transition: width 0.2s;
+  transition: width 0.6s;
 }
 
 .underlineHover:hover {

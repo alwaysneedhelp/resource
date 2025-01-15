@@ -1,19 +1,45 @@
-<!-- <form action="">
-    <input type="email" placeholder="Email">
-    <input type="text" placeholder="Username">
-    <input type="password" placeholder="Password">
-    <input type="password" placeholder="Confirm Password">
-    <button>Register</button>
-</form> -->
+{% load static %}
 
-{% if form.errors %}
-<div class="alert alert-danger">
-    <strong>{{form.errors}}</strong>
-</div>
-{% endif %}
+<head>
+    <link rel="stylesheet" href="{% static 'userauths/css/login.css' %}">
+</head>
 
-<form action="" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button>Register</button>
-</form>
+
+<body>
+
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+
+          <!-- Display messages -->
+            {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        <div class="alert {{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+          <!-- Tabs Titles -->
+          <a class="inactive underlineHover" href="{% url 'userauths:login' %}"> Sign In </a>
+          <a class="active" href="{% url 'userauths:register' %}">Sign Up</a>
+      
+          <!-- Icon -->
+          <div class="fadeIn first">
+            <i class="fa-solid fa-user" id="icon" alt="User Icon"></i>
+          </div>
+      
+          <!-- Login Form -->
+          <form method="POST">
+            {% csrf_token %}
+            <input type="text" id="username" class="fadeIn second" name="username" placeholder="username">
+            <input type="email" id="email" class="fadeIn second" name="email" placeholder="email">
+            <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+            <input type="password" id="password1" class="fadeIn third" name="password1" placeholder="verify password">
+            <input type="submit" class="fadeIn fourth" value="Sign Up">
+          </form>
+      
+        </div>
+    </div>
+</body>
